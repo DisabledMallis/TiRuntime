@@ -1,8 +1,9 @@
+import { Shell } from "./shell";
 import { Tokens } from "./tokens";
 
 class Main {
 	static main() {
-		console.log(Tokens.NUM_9);
+		new Shell().runShell();
 	}
 };
 

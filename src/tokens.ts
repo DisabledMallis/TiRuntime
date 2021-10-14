@@ -1,11 +1,18 @@
+import { Action } from "./action";
+import { TokenAction } from "./tokenAction";
+
 export module Tokens {
 	//Token list for iteration
 	export var allTokens: Token[] = [];
 
 	//Token class
 	export class Token {
-		public static registerToken(text: String, topByte: number, bottomByte?: number) {
-			var token = new Token(text, topByte, bottomByte as any);
+		public static registerToken(text: String, topByte: number, bottomByte?: number, action?: TokenAction) {
+			var theAction: TokenAction = null;
+			if(action != null) {
+				theAction = action;
+			}
+			var token = new Token(text, theAction, topByte, bottomByte as any);
 			allTokens.push(token);
 			return token;
 		}
@@ -14,13 +21,15 @@ export module Tokens {
 		private text: String;
 		private topByte: number;
 		private bottomByte?: number;
+		private action?: TokenAction;
 	
-		public constructor(text: String, topByte: number);
-		public constructor(text: String, topByte: number, bottomByte: number);
-		public constructor(text: String, topByte: number, bottomByte?: number) {
+		public constructor(text: String, action: TokenAction, topByte: number);
+		public constructor(text: String, action: TokenAction, topByte: number, bottomByte: number);
+		public constructor(text: String, action: TokenAction, topByte: number, bottomByte?: number) {
 			this.topByte = topByte;
 			this.bottomByte = bottomByte;
 			this.text = text;
+			this.action = action;
 		};	
 	};
 
@@ -116,6 +125,6 @@ export module Tokens {
 	export var THEN = Token.registerToken("THEN", 0xCF);
 	export var END = Token.registerToken("END", 0xD4);
 	export var INPUT = Token.registerToken("INPUT", 0xDC);
-	export var DISP = Token.registerToken("DISP", 0xDE);
+	export var DISP = Token.registerToken("DISP", 0xDE, null, Action.dispAction);
 	export var CLR_LIST = Token.registerToken("CLR_LIST", 0xFA);
-}
+};
