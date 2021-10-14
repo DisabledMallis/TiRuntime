@@ -1,8 +1,8 @@
-import {Token} from "./tokens";
+import { Tokens } from "./tokens";
 
 class Main {
 	static main() {
-		console.log(Token.NUM_9);
+		console.log(Tokens.NUM_9);
 	}
 };
 
