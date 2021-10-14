@@ -2,7 +2,7 @@ import {Token} from "./tokens";
 
 class Main {
 	static main() {
-		console.log("Main");
+		console.log(Token.NUM_9);
 	}
 };
 
