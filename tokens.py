@@ -1,8 +1,9 @@
 class Token:
-	def __init__(self, text, topByte, bottomByte=None):
+	def __init__(self, text, topByte, bottomByte=None, action=None):
 		self.text = text
 		self.topByte = topByte
 		self.bottomByte = bottomByte
+		self.action = action;
 	
 	def __str__(self):
 		return "Token: \""+self.getText()+"\", Top: "+str(self.getTopByte())+("" if (self.getBottomByte() == None) else ", Bottom: "+str(self.getBottomByte()));
@@ -20,12 +21,21 @@ class Token:
 			return self.getTopByte();
 		else:
 			return [self.getTopByte(), self.getBottomByte()];
+	
+	def runAction(self):
+		if self.action == None:
+			print("Token "+self.getText()+" has no action");
+		else:
+			return self.action(self);
 
 allTokens = [];
 
-def createToken(text, topByte, bottomByte=None):
+def defaultAction(token):
+	print("Token "+token.getText()+" runs with the default action");
+
+def createToken(text, topByte, bottomByte=None, action=defaultAction):
 	global allTokens;
-	token = Token(text, topByte, bottomByte);
+	token = Token(text, topByte, bottomByte, action);
 	allTokens.append(token);
 	return token;
 
