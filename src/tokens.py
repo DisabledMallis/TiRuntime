@@ -1,3 +1,5 @@
+import interpreter;
+
 class Token:
 	def __init__(self, text, topByte, bottomByte=None, action=None):
 		self.text = text
@@ -53,7 +55,6 @@ NUM_9 = createToken("9", 0x39);
 def displayAction(token, tokens, index):
 	output = ""
 	toDisp = tokens[index+1:];
-	for i in range(0, len(toDisp)):
-		output += toDisp[i].getText();
+	result, output = interpreter.evalExpr(toDisp);
 	print(output);
 DISP = createToken("Disp", 0x0, action=displayAction);

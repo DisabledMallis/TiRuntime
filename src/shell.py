@@ -3,7 +3,7 @@ import interpreter;
 import result;
 
 def shellInput():
-	text = raw_input(":");
+	text = input(":");
 	return text;
 
 def shellLoop():
