@@ -1,4 +1,4 @@
-import result;
+import runtime.result as result;
 
 def evalExpr(tokens):
 	code = "";

@@ -1,6 +1,6 @@
-import parser;
-import interpreter;
-import result;
+import runtime.parser as parser;
+import runtime.interpreter as interpreter;
+import runtime.result as result;
 
 def shellInput():
 	text = input(":");
@@ -10,5 +10,5 @@ def shellLoop():
 	while True:
 		text = shellInput();
 		tokens = parser.parse(text);
-		result = interpreter.eval(tokens);
+		result = interpreter.evalLine(tokens);
 		result.printResult();

@@ -1,4 +1,4 @@
-import interpreter;
+import runtime.interpreter as interpreter;
 
 class Token:
 	def __init__(self, text, topByte, bottomByte=None, action=None):
@@ -41,6 +41,10 @@ def createToken(text, topByte, bottomByte=None, action=defaultAction):
 	allTokens.append(token);
 	return token;
 
+ADD = createToken("+", 0x0);
+SUB = createToken("-", 0x0);
+MUL = createToken("*", 0x0);
+DIV = createToken("/", 0x0);
 BLANK = createToken(" ", 0x0);
 NUM_0 = createToken("0", 0x30);
 NUM_1 = createToken("1", 0x31);
