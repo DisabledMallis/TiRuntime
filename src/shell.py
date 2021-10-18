@@ -1,6 +1,6 @@
 import runtime.parser as parser;
 import runtime.interpreter as interpreter;
-import runtime.result as result;
+#import runtime.result as result;
 
 def shellInput():
 	text = input(":");
