@@ -1,4 +1,5 @@
 import runtime.result as result;
+import runtime.expression.expression as expression;
 import tokens as tkn;
 
 def sanitizeExpr(tokens):
@@ -7,6 +8,8 @@ def sanitizeExpr(tokens):
 	if tokens[0] == tkn.NUM[0] or tokens[0] == tkn.BLANK:
 		return sanitizeExpr(tokens[1:]);
 	return tokens;
+def makeExpression(tokens):
+	
 def evalExpr(tokens):
 	code = "";
 	tokens = sanitizeExpr(tokens);
@@ -15,7 +18,7 @@ def evalExpr(tokens):
 	if code == "":
 		return result.UNKNOWN, "Syntax Error";
 	#TODO: Manually eval this shiz
-	#complete = eval(code);
+	complete = eval(code);
 	return result.UNKNOWN, complete;
 
 def evalLine(tokens):
