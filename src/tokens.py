@@ -31,12 +31,28 @@ class Token:
 		else:
 			return self.action(self, tokens);
 
+class Digit(Token):
+	def __init__(self, text):
+		self.text = text;
+		self.topByte = int(text)+0x30;
+		self.bottomByte = None;
+		self.action = None;
+	
+	def runAction(self, tokens):
+		# Digits have no actions, they should be parsed by expressions and such of other actions
+		return True;
+
 allTokens = [];
 
 def defaultAction(token, tokens):
 	#print("Token "+token.getText()+" runs with the default action");
 	return True;
 
+def createDigit(text):
+	global allTokens;
+	digit = Digit(text);
+	allTokens.append(digit);
+	return digit;
 def createToken(text, topByte, bottomByte=None, action=defaultAction):
 	global allTokens;
 	token = Token(text, topByte, bottomByte, action);
@@ -58,7 +74,7 @@ QUOTE = createToken("\"", 0x0);
 #Registers tokens for all digits 0-9
 NUM = [];
 for i in range(0, 10):
-	NUM.append(createToken(str(i), 0x30+i));
+	NUM.append(createDigit(str(i)));
 #Registers tokens for all letters A-Z
 LETTER = [];
 for i in range(0, 26):

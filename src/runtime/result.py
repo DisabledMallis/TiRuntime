@@ -9,3 +9,4 @@ class Result:
 
 SUCCESS = Result(0, "Success");
 UNKNOWN = Result(1, "Unknown error occoured");
+NONE = Result(2, "Nothing happened, likely due to no input");
