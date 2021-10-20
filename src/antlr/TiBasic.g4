@@ -1,9 +1,5 @@
 grammar TiBasic;
 
-@header {
-package com.efscript.antlr;
-} 
-
 script
 	: token*
 	| EOF
@@ -34,8 +30,13 @@ token
 	| semicolon
 	;
 
+//Letters (Ti-basic variables & text)
+quote : '"';
+letter : LETTER;
+LETTER : [A-Z];
+
 //Tokens
-disp : 'DISP';
+disp : 'DISP' letter:number;
 input : 'INPUT';
 store : '->';
 if_ : 'IF'; //Has an _ because it conflicts with java's 'if' in code generation
@@ -43,11 +44,6 @@ then : 'THEN';
 end : 'END';
 list : 'LIST' number;
 space : ' ';
-
-//Letters (Ti-basic variables & text)
-quote : '"';
-letter : LETTER;
-LETTER : [A-Z];
 
 //Symbols
 colon : ':';
@@ -61,7 +57,12 @@ close_bracket : ')';
 equals : '=';
 
 //Numbers
-number : NUMBER;
+number
+	: NUMBER
+	| pi
+	| e
+	| i
+	;
 NUMBER
 	: [0-9]
 	;
