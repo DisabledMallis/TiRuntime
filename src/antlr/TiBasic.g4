@@ -36,7 +36,7 @@ letter : LETTER;
 LETTER : [A-Z];
 
 //Tokens
-disp : 'DISP' letter:number;
+disp : 'DISP' token*;
 input : 'INPUT';
 store : '->';
 if_ : 'IF'; //Has an _ because it conflicts with java's 'if' in code generation

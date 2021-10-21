@@ -1,22 +1,19 @@
 import tokens;
+from antlr4 import *;
+from antlr.TiBasicLexer import TiBasicLexer;
+from antlr.TiBasicParser import TiBasicParser;
+from runtime.interpreter import Interpreter;
+
 
 def parse(text):
-	tokenSet = [];
-	allTokens = tokens.allTokens;
+	lexer = TiBasicLexer(text);
+	stream = CommonTokenStream(lexer);
+	parser = TiBasicParser(stream);
+	tree = parser.script();
+	walker = ParseTreeWalker(tree);
 
-	parsingText = text;
-	while parsingText != "":
-		parsedToken = False;
-		for i in range(0, len(allTokens)):
-			token = allTokens[i];
-			tkStr = token.getText();
-			if parsingText[0:len(tkStr)] == tkStr:
-				tokenSet.append(token);
-				parsingText = parsingText[len(tkStr):];
-				parsedToken = True;
-		if not parsedToken:
-			print("Cannot parse \""+parsingText+"\", unknown token?");
-			tokenSet = [];
-			break;
+	interpreter = Interpreter();
+
+	walker.walk(interpreter, tree);
 	
-	return tokenSet;
+	return None;
