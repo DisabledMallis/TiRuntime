@@ -1,7 +1,3 @@
 __pycache__
 .upm/
 *.pyc
-*.interp
-*.tokens
-src/antlr/*.py
-*.jar

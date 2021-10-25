@@ -1,3 +1,2 @@
 language = "python3"
-run = "./run.sh"
-setup = "./setup.py"
+run = "python src/main.py"
