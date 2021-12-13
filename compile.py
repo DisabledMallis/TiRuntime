@@ -1,0 +1,3 @@
+# This file is responsible for compiling text to tokens...
+# its more of a tokenizer, isnt it? Either way this step
+# is skipped when executing an existing .8xp file or such
